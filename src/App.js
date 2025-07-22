@@ -52,12 +52,22 @@ function App() {
     <div
       style={{
         textAlign: "center",
-        marginTop: "50px",
-        fontFamily: "'Arial', monospace", // ensures all digits line up evenly
+        margin: "0 auto",
+        minHeight: "100vh", // makes it center vertically
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        fontFamily: "'Courier New', monospace",
+        padding: "0 10px", // prevents text from touching screen edges
       }}
     >
       {/* Title */}
-      <h1 style={{ fontSize: "3rem", marginBottom: "30px" }}>
+      <h1
+        style={{
+          fontSize: "clamp(1.5rem, 5vw, 3rem)", // scales between mobile and desktop
+          marginBottom: "30px",
+        }}
+      >
         ICECREAM CLOSING COUNTDOWN
       </h1>
 
@@ -66,39 +76,46 @@ function App() {
         style={{
           display: "flex",
           justifyContent: "center",
-          gap: "60px",
-          fontFamily: "monospace", // Monospace fallback for stability
+          gap: "clamp(10px, 5vw, 60px)", // adjusts spacing dynamically
+          flexWrap: "wrap", // allows wrapping on small screens
         }}
       >
         {/* Hours */}
-        <div style={{ textAlign: "center", minWidth: "120px" }}>
-          <div style={{ fontSize: "5rem", minWidth: "120px" }}>
+        <div style={{ textAlign: "center", minWidth: "80px" }}>
+          <div style={{ fontSize: "clamp(2rem, 8vw, 5rem)" }}>
             {String(timeLeft.hours).padStart(2, "0")}
           </div>
-          <div style={{ fontSize: "1.5rem" }}>Hours</div>
+          <div style={{ fontSize: "clamp(1rem, 3vw, 1.5rem)" }}>Hours</div>
         </div>
 
         {/* Minutes */}
-        <div style={{ textAlign: "center", minWidth: "120px" }}>
-          <div style={{ fontSize: "5rem", minWidth: "120px" }}>
+        <div style={{ textAlign: "center", minWidth: "80px" }}>
+          <div style={{ fontSize: "clamp(2rem, 8vw, 5rem)" }}>
             {String(timeLeft.minutes).padStart(2, "0")}
           </div>
-          <div style={{ fontSize: "1.5rem" }}>Minutes</div>
+          <div style={{ fontSize: "clamp(1rem, 3vw, 1.5rem)" }}>Minutes</div>
         </div>
 
         {/* Seconds */}
-        <div style={{ textAlign: "center", minWidth: "180px" }}>
-          <div style={{ fontSize: "5rem", minWidth: "180px" }}>
+        <div style={{ textAlign: "center", minWidth: "120px" }}>
+          <div style={{ fontSize: "clamp(2rem, 8vw, 5rem)" }}>
             {(timeLeft.seconds + timeLeft.milliseconds / 1000)
               .toFixed(3)
               .padStart(6, "0")}
           </div>
-          <div style={{ fontSize: "1.5rem" }}>Seconds</div>
+          <div style={{ fontSize: "clamp(1rem, 3vw, 1.5rem)" }}>Seconds</div>
         </div>
       </div>
 
       {/* Emoji */}
-      <p style={{ fontSize: "10rem", marginTop: "50px" }}>{emoji}</p>
+      <p
+        style={{
+          fontSize: "clamp(4rem, 15vw, 10rem)", // scales emoji for mobile too
+          marginTop: "40px",
+        }}
+      >
+        {emoji}
+      </p>
     </div>
   );
 }
